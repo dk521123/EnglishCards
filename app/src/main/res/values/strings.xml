@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">EnglishCards</string>
+    <string name="english_label">English:</string>
+    <string name="japanese_label">Japanese:</string>
+    <string name="memo_label">Memo:</string>
+    <string name="save_button">Save</string>
+    <string name="delete_button">Delete</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="preference_menu">Preference</string>
+    <string name="word_card_menu">Word Card</string>
+    <string name="add_menu">Add</string>
+    <string name="max_words_in_card">Max Words in English Card</string>
+    <string name="random_words_in_card">Random Words in English Card</string>
+    <string name="random_switch">Random?</string>
+    <string name="back_button">Back</string>
+    <string name="home_menu">Main</string>
+    <string name="mother_language_label">Japanese:</string>
+    <string name="exam_menu">Exam</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="exam_title_label">Exam (X/X)</string>
+</resources>
