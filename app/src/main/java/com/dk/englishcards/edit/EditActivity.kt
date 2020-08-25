@@ -1,15 +1,13 @@
-package com.dk.englishcards
+package com.dk.englishcards.edit
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import com.dk.englishcards.BaseActivity
 import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
+import com.dk.englishcards.commons.BaseSubPageActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 
-class EditActivity : BaseActivity() {
+class EditActivity : BaseSubPageActivity() {
     private var englishCardId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,28 +60,6 @@ class EditActivity : BaseActivity() {
                 super.dbHandler.delete(id)
             }
             super.moveToMain()
-        }
-    }
-
-    // For menu
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_for_sub, menu)
-        return true
-    }
-
-    // Click events For menu
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.homeItem -> {
-                super.moveToMain()
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
         }
     }
 }

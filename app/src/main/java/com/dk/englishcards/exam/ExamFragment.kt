@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
+import com.dk.englishcards.commons.BaseFragment
 import com.dk.englishcards.R
 
 private const val ARG_PARAM_POSITION = "position"
 private const val ARG_PARAM_LABEL = "label"
 
-class ExamFragment : Fragment() {
+class ExamFragment : BaseFragment() {
     private var position: Int? = null
     private var label: String? = null
 

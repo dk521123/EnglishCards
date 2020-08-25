@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class ExamAdapter(fragmentActivity: FragmentActivity, exams: Array<Exam>)
+class ExamAdapter(fragmentActivity: FragmentActivity, exams: List<Exam>)
     : FragmentStateAdapter(fragmentActivity) {
     private val exams = exams
 

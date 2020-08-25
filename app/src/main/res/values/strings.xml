@@ -19,4 +19,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="exam_title_label">Exam (X/X)</string>
+    <string name="exam_pref_tab">Exam</string>
+    <string name="others_pref_tab">Others</string>
+    <string name="number_question_label">Number Of Question :</string>
+    <string name="en_ml_label"><![CDATA[English <-> Mother Language]]></string>
+    <string name="ml_en_radio_button"><![CDATA[Mother Language => English]]></string>
+    <string name="en_ml_radio_button"><![CDATA[English => Mother Language]]></string>
 </resources>

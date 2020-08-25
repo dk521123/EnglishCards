@@ -1,4 +1,4 @@
-package com.dk.englishcards
+package com.dk.englishcards.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
 import kotlinx.android.synthetic.main.main_list_item.view.*
 

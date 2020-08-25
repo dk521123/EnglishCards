@@ -11,9 +11,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity2"></activity>
         <activity android:name=".exam.ExamActivity" />
-        <activity android:name=".PreferenceActivity" />
-        <activity android:name=".EditActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".pref.PreferenceActivity" />
+        <activity android:name=".edit.EditActivity" />
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

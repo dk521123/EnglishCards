@@ -1,17 +1,22 @@
-package com.dk.englishcards
+package com.dk.englishcards.commons
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.dk.englishcards.edit.EditActivity
+import com.dk.englishcards.main.MainActivity
 import com.dk.englishcards.cards.EnglishCardDbHandler
+import com.dk.englishcards.pref.Preference
 
 open class BaseActivity : AppCompatActivity() {
     protected lateinit var dbHandler: EnglishCardDbHandler
+    protected lateinit var preference: Preference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         this.dbHandler = EnglishCardDbHandler(this)
+        this.preference = Preference(this)
     }
 
     protected fun moveToMain() {
