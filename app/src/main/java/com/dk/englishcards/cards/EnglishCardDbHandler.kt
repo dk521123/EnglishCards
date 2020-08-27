@@ -8,11 +8,14 @@ import io.realm.RealmResults
 import io.realm.Sort
 import java.util.*
 
-class EnglishCardDbHandler(context: Context) {
+class EnglishCardDbHandler(context: Context? = null) {
     private var realm: Realm
 
     init {
-        Realm.init(context)
+        if (context != null) {
+            Realm.init(context)
+        }
+
         val realmConfiguration =
             RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
@@ -30,6 +33,14 @@ class EnglishCardDbHandler(context: Context) {
         return this.realm.where(EnglishCard::class.java)
             .equalTo(EnglishCard.ID_FIELD, englishCardId)
             .findFirst()
+    }
+
+    fun insertAll(englishCards: List<EnglishCard>)  = try {
+        this.realm.executeTransaction {
+            this.realm.insert(englishCards)
+        }
+    } catch (ex: Exception) {
+        ex.printStackTrace()
     }
 
     fun insert(english: String, motherLanguage: String, memo: String) = try {
@@ -53,6 +64,15 @@ class EnglishCardDbHandler(context: Context) {
             englishCard?.motherLanguage = motherLanguage
             englishCard?.memo = memo
             englishCard?.updatedAt = Date()
+        }
+    } catch (ex: Exception) {
+        ex.printStackTrace()
+    }
+
+    fun deleteAll() = try {
+        this.realm.executeTransaction {
+            val englishCards = this.readAll()
+            englishCards?.deleteAllFromRealm()
         }
     } catch (ex: Exception) {
         ex.printStackTrace()

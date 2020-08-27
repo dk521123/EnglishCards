@@ -47,7 +47,7 @@ class ExamFragment : BaseFragment() {
         val textView = view.findViewById<TextView>(
             R.id.examTextView)
         val qOrA = if ((position!! % 2) == 0) "Q" else "A"
-        val no = (position!! / 2)
-        textView.text = "$qOrA-$no. $label"
+        val no = (position!! / 2) + 1
+        textView.text = "$qOrA-$no.\n\n $label"
     }
 }

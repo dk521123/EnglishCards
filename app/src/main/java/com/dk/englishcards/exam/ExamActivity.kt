@@ -14,8 +14,9 @@ class ExamActivity : BaseSubPageActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exam)
 
+        val englishCards = super.dbHandler.readAll()
         val exams = EnglishCard.toExams(
-            super.dbHandler.readAll(),
+            englishCards.shuffled(),
             super.preference.isEnglishQuestion(),
             super.preference.getMaxNumberQuestion()
         )

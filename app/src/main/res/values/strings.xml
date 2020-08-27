@@ -25,4 +25,5 @@
     <string name="en_ml_label"><![CDATA[English <-> Mother Language]]></string>
     <string name="ml_en_radio_button"><![CDATA[Mother Language => English]]></string>
     <string name="en_ml_radio_button"><![CDATA[English => Mother Language]]></string>
+    <string name="clear_import_toeic_item"><![CDATA[Clear & Import TOEIC]]></string>
 </resources>

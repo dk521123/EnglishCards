@@ -23,7 +23,17 @@ open class EnglishCard : RealmObject() {
         const val ENGLISH_FIELD = "english"
 
         @JvmStatic
-        fun toExams(englishCards: RealmResults<EnglishCard>,
+        fun newInstance(
+            english: String,
+            motherLanguage: String,
+            memo: String) = EnglishCard().apply {
+            this.english = english
+            this.motherLanguage = motherLanguage
+            this.memo = memo
+        }
+
+        @JvmStatic
+        fun toExams(englishCards: List<EnglishCard>,
                     isEnglishQuestion: Boolean = true,
                     maxNumberQuestion: Int? = null
         ): List<Exam> {

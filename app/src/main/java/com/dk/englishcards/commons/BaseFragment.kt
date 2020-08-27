@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.dk.englishcards.pref.Preference
 
-open class BaseFragment: Fragment() {
+abstract class BaseFragment: Fragment() {
     protected lateinit var preference: Preference
 
     override fun onCreate(savedInstanceState: Bundle?) {

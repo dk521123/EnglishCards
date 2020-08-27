@@ -4,7 +4,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.dk.englishcards.R
 
-open class BaseSubPageActivity : BaseActivity() {
+abstract class BaseSubPageActivity : BaseActivity() {
 
     // For menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

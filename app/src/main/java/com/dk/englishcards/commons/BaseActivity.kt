@@ -8,7 +8,7 @@ import com.dk.englishcards.main.MainActivity
 import com.dk.englishcards.cards.EnglishCardDbHandler
 import com.dk.englishcards.pref.Preference
 
-open class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
     protected lateinit var dbHandler: EnglishCardDbHandler
     protected lateinit var preference: Preference
 
