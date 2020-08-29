@@ -13,7 +13,8 @@ class ExamAdapter(fragmentActivity: FragmentActivity, exams: List<Exam>)
         val exam = exams[index]
         val questionOrAnswer = if ((position % 2) == 0)
             exam.question else exam.answer
-        return ExamFragment.newInstance(position, questionOrAnswer)
+        return ExamFragment.newInstance(
+            position, questionOrAnswer, exam.englishCardId)
     }
 
     override fun getItemCount(): Int {

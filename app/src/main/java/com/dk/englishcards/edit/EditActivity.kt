@@ -21,12 +21,14 @@ class EditActivity : BaseSubPageActivity() {
             englishEditText.setText(englishCard?.english)
             motherLanguageEditText.setText(englishCard?.motherLanguage)
             memoEditText.setText(englishCard?.memo)
+            confidenceRatingBar.rating = englishCard?.confidence!!
 
             this.deleteButton.visibility = View.VISIBLE
         } else {
             englishEditText.setText("")
             motherLanguageEditText.setText("")
             memoEditText.setText("")
+            confidenceRatingBar.rating = 0.0F
 
             this.deleteButton.visibility = View.INVISIBLE
         }
@@ -37,14 +39,18 @@ class EditActivity : BaseSubPageActivity() {
                     super.dbHandler.insert(
                         englishEditText.text.toString(),
                         motherLanguageEditText.text.toString(),
-                        memoEditText.text.toString())
+                        memoEditText.text.toString(),
+                        confidenceRatingBar.rating
+                    )
                 }
                 else -> {
                     super.dbHandler.update(
                         id,
                         englishEditText.text.toString(),
                         motherLanguageEditText.text.toString(),
-                        memoEditText.text.toString())
+                        memoEditText.text.toString(),
+                        confidenceRatingBar.rating
+                    )
                 }
             }
             super.moveToMain()

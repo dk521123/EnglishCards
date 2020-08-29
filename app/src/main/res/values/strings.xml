@@ -26,4 +26,6 @@
     <string name="ml_en_radio_button"><![CDATA[Mother Language => English]]></string>
     <string name="en_ml_radio_button"><![CDATA[English => Mother Language]]></string>
     <string name="clear_import_toeic_item"><![CDATA[Clear & Import TOEIC]]></string>
+    <string name="confidence_label">Confidence :</string>
+    <string name="change_confidence_label">Do you want to change the confidence?</string>
 </resources>

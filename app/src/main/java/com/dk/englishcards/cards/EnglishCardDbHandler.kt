@@ -1,7 +1,6 @@
 package com.dk.englishcards.cards
 
 import android.content.Context
-import android.view.textclassifier.TextLanguage
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmResults
@@ -43,13 +42,19 @@ class EnglishCardDbHandler(context: Context? = null) {
         ex.printStackTrace()
     }
 
-    fun insert(english: String, motherLanguage: String, memo: String) = try {
+    fun insert(
+        english: String,
+        motherLanguage: String,
+        memo: String,
+        confidence: Float
+    ) = try {
         this.realm.executeTransaction {
             val englishCard =
                 this.realm.createObject(EnglishCard::class.java!!, UUID.randomUUID().toString())
             englishCard.english = english
             englishCard.motherLanguage = motherLanguage
             englishCard.memo = memo
+            englishCard.confidence = confidence
             englishCard.createdAt = Date()
             englishCard.updatedAt = Date()
         }
@@ -57,12 +62,19 @@ class EnglishCardDbHandler(context: Context? = null) {
         ex.printStackTrace()
     }
 
-    fun update(englishCardId: String, english: String, motherLanguage: String, memo: String) = try {
+    fun update(
+        englishCardId: String,
+        english: String,
+        motherLanguage: String,
+        memo: String,
+        confidence: Float
+    ) = try {
         this.realm.executeTransaction {
             val englishCard = this.readById(englishCardId)
             englishCard?.english = english
             englishCard?.motherLanguage = motherLanguage
             englishCard?.memo = memo
+            englishCard?.confidence = confidence
             englishCard?.updatedAt = Date()
         }
     } catch (ex: Exception) {
