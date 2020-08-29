@@ -20,24 +20,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/changeConfidenceTextView"
+        android:id="@+id/changeCheckRequiredTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/change_confidence_label"
+        android:text="@string/change_check_required_label"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/examTextView" />
 
     <RatingBar
-        android:id="@+id/changeConfidenceRatingBar"
+        android:id="@+id/changeCheckRequiredRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeConfidenceTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/changeCheckRequiredTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

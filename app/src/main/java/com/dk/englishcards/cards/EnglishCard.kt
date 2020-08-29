@@ -15,7 +15,7 @@ open class EnglishCard : RealmObject() {
     var english: String = ""
     var motherLanguage: String = ""
     var memo: String = ""
-    var confidence: Float = 0.0F
+    var checkRequired: Float = 0.0F
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
 

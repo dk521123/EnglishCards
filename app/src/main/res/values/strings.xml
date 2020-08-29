@@ -16,8 +16,6 @@
     <string name="home_menu">Main</string>
     <string name="mother_language_label">Japanese:</string>
     <string name="exam_menu">Exam</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="exam_title_label">Exam (X/X)</string>
     <string name="exam_pref_tab">Exam</string>
     <string name="others_pref_tab">Others</string>
@@ -26,6 +24,6 @@
     <string name="ml_en_radio_button"><![CDATA[Mother Language => English]]></string>
     <string name="en_ml_radio_button"><![CDATA[English => Mother Language]]></string>
     <string name="clear_import_toeic_item"><![CDATA[Clear & Import TOEIC]]></string>
-    <string name="confidence_label">Confidence :</string>
-    <string name="change_confidence_label">Do you want to change the confidence?</string>
+    <string name="check_required_label">Check Required :</string>
+    <string name="change_check_required_label">Do you want to change the check required?</string>
 </resources>

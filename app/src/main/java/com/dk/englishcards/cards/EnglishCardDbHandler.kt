@@ -46,7 +46,7 @@ class EnglishCardDbHandler(context: Context? = null) {
         english: String,
         motherLanguage: String,
         memo: String,
-        confidence: Float
+        checkRequired: Float
     ) = try {
         this.realm.executeTransaction {
             val englishCard =
@@ -54,7 +54,7 @@ class EnglishCardDbHandler(context: Context? = null) {
             englishCard.english = english
             englishCard.motherLanguage = motherLanguage
             englishCard.memo = memo
-            englishCard.confidence = confidence
+            englishCard.checkRequired = checkRequired
             englishCard.createdAt = Date()
             englishCard.updatedAt = Date()
         }
@@ -67,14 +67,14 @@ class EnglishCardDbHandler(context: Context? = null) {
         english: String,
         motherLanguage: String,
         memo: String,
-        confidence: Float
+        checkRequired: Float
     ) = try {
         this.realm.executeTransaction {
             val englishCard = this.readById(englishCardId)
             englishCard?.english = english
             englishCard?.motherLanguage = motherLanguage
             englishCard?.memo = memo
-            englishCard?.confidence = confidence
+            englishCard?.checkRequired = checkRequired
             englishCard?.updatedAt = Date()
         }
     } catch (ex: Exception) {

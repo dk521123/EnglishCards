@@ -57,20 +57,20 @@ class ExamFragment : BaseFragment() {
         if (((position!! % 2) == 0)) {
             // Question
             textView.text = "Q-$no.\n\n $label"
-            changeConfidenceTextView.visibility = View.INVISIBLE
-            changeConfidenceRatingBar.visibility = View.INVISIBLE
+            changeCheckRequiredTextView.visibility = View.INVISIBLE
+            changeCheckRequiredRatingBar.visibility = View.INVISIBLE
         } else {
             // Answer
             textView.text = "A-$no.\n\n $label"
-            changeConfidenceTextView.visibility = View.VISIBLE
-            changeConfidenceRatingBar.visibility = View.VISIBLE
+            changeCheckRequiredTextView.visibility = View.VISIBLE
+            changeCheckRequiredRatingBar.visibility = View.VISIBLE
 
             val englishCard = englishCardId?.let {
                 super.englishCardDbHandler.readById(it)
             }
             if (englishCard != null) {
-                changeConfidenceRatingBar.rating = englishCard.confidence
-                changeConfidenceRatingBar.setOnRatingBarChangeListener { _, rating, _ ->
+                changeCheckRequiredRatingBar.rating = englishCard.checkRequired
+                changeCheckRequiredRatingBar.setOnRatingBarChangeListener { _, rating, _ ->
                     super.englishCardDbHandler.update(
                         englishCard.englishCardId.toString(),
                         englishCard?.english.toString(),

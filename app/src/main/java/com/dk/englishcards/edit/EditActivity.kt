@@ -21,14 +21,14 @@ class EditActivity : BaseSubPageActivity() {
             englishEditText.setText(englishCard?.english)
             motherLanguageEditText.setText(englishCard?.motherLanguage)
             memoEditText.setText(englishCard?.memo)
-            confidenceRatingBar.rating = englishCard?.confidence!!
+            checkRequiredRatingBar.rating = englishCard?.checkRequired!!
 
             this.deleteButton.visibility = View.VISIBLE
         } else {
             englishEditText.setText("")
             motherLanguageEditText.setText("")
             memoEditText.setText("")
-            confidenceRatingBar.rating = 0.0F
+            checkRequiredRatingBar.rating = 0.0F
 
             this.deleteButton.visibility = View.INVISIBLE
         }
@@ -40,7 +40,7 @@ class EditActivity : BaseSubPageActivity() {
                         englishEditText.text.toString(),
                         motherLanguageEditText.text.toString(),
                         memoEditText.text.toString(),
-                        confidenceRatingBar.rating
+                        checkRequiredRatingBar.rating
                     )
                 }
                 else -> {
@@ -49,7 +49,7 @@ class EditActivity : BaseSubPageActivity() {
                         englishEditText.text.toString(),
                         motherLanguageEditText.text.toString(),
                         memoEditText.text.toString(),
-                        confidenceRatingBar.rating
+                        checkRequiredRatingBar.rating
                     )
                 }
             }

@@ -80,7 +80,7 @@
         android:drawableLeft="@drawable/ic_menu_close_clear_cancel"
         android:text="@string/cancel_button"
         app:layout_constraintStart_toEndOf="@+id/saveButton"
-        app:layout_constraintTop_toBottomOf="@+id/confidenceRatingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/checkRequiredRatingBar" />
 
     <Button
         android:id="@+id/saveButton"
@@ -91,7 +91,7 @@
         android:drawableLeft="@drawable/ic_menu_save"
         android:text="@string/save_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confidenceRatingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/checkRequiredRatingBar" />
 
     <Button
         android:id="@+id/deleteButton"
@@ -102,24 +102,24 @@
         android:drawableLeft="@android:drawable/ic_menu_delete"
         android:text="@string/delete_button"
         app:layout_constraintStart_toEndOf="@+id/cancelButton"
-        app:layout_constraintTop_toBottomOf="@+id/confidenceRatingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/checkRequiredRatingBar" />
 
     <TextView
-        android:id="@+id/confidenceTextView"
+        android:id="@+id/checkRequiredTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="@string/confidence_label"
+        android:text="@string/check_required_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/memoEditText" />
 
     <RatingBar
-        android:id="@+id/confidenceRatingBar"
+        android:id="@+id/checkRequiredRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confidenceTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/checkRequiredTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
