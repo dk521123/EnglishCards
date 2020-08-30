@@ -65,6 +65,7 @@ class MainActivity : BaseActivity() {
                 } else {
                     "Import is failed..."
                 }
+                this.showUpdatedView()
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 true
             }
@@ -76,7 +77,10 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        this.showUpdatedView()
+    }
 
+    private fun showUpdatedView() {
         val englishCards = super.dbHandler.readAll()
         val adapter = MainListRecyclerViewAdapter(englishCards.toMutableList())
         mainRecyclerView.layoutManager = LinearLayoutManager(this)
