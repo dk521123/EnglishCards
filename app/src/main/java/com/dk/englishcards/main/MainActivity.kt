@@ -1,10 +1,15 @@
 package com.dk.englishcards.main
 
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dk.englishcards.R
@@ -73,7 +78,7 @@ class MainActivity : BaseActivity() {
         super.onResume()
 
         val englishCards = super.dbHandler.readAll()
-        val adapter = MainListRecyclerViewAdapter(englishCards.toTypedArray())
+        val adapter = MainListRecyclerViewAdapter(englishCards.toMutableList())
         mainRecyclerView.layoutManager = LinearLayoutManager(this)
         mainRecyclerView.adapter = adapter
         mainRecyclerView.setHasFixedSize(true)
@@ -89,5 +94,91 @@ class MainActivity : BaseActivity() {
                         targerItem.englishCardId)
                 }
             })
+
+        val helper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            0, (ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT)
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                adapter.removeItem(viewHolder.adapterPosition)
+            }
+
+            override fun onChildDraw(
+                canvas: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dx: Float,
+                dy: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                super.onChildDraw(
+                    canvas,
+                    recyclerView,
+                    viewHolder,
+                    dx,
+                    dy,
+                    actionState,
+                    isCurrentlyActive
+                )
+                val isFromLeftDirection = dx < 0
+                val itemView = viewHolder.itemView
+
+                val background = ColorDrawable(Color.RED)
+                if (isFromLeftDirection) {
+                    background.setBounds(
+                        itemView.right + dx.toInt(),
+                        itemView.top,
+                        itemView.right,
+                        itemView.bottom
+                    )
+                } else {
+                    background.setBounds(
+                        itemView.left,
+                        itemView.top,
+                        itemView.left + dx.toInt(),
+                        itemView.bottom
+                    )
+                }
+                background.draw(canvas)
+
+                val deleteIcon = AppCompatResources.getDrawable(
+                    this@MainActivity,
+                    R.drawable.ic_baseline_delete_forever_24
+                )
+                val iconMarginVertical =
+                    (viewHolder.itemView.height - deleteIcon!!.intrinsicHeight) / 2
+                val itemHeight = itemView.bottom - itemView.top
+                val deleteIconIntrinsicWidth = deleteIcon?.intrinsicWidth
+                val deleteIconIntrinsicHeight = deleteIcon?.intrinsicHeight
+                if (isFromLeftDirection) {
+                    val deleteIconTop =
+                        itemView.top + (itemHeight - deleteIconIntrinsicHeight) / 2
+                    val deleteIconMargin =
+                        (itemHeight - deleteIconIntrinsicHeight) / 2
+                    deleteIcon.setBounds(
+                        itemView.right - deleteIconMargin - deleteIconIntrinsicWidth,
+                        deleteIconTop,
+                        itemView.right - deleteIconMargin,
+                        deleteIconTop + deleteIconIntrinsicHeight)
+                } else {
+                    deleteIcon.setBounds(
+                        itemView.left + iconMarginVertical,
+                        itemView.top + iconMarginVertical,
+                        itemView.left + iconMarginVertical + deleteIcon.intrinsicWidth,
+                        itemView.bottom - iconMarginVertical
+                    )
+                }
+                deleteIcon.draw(canvas)
+            }
+        })
+        helper.attachToRecyclerView(mainRecyclerView)
     }
 }

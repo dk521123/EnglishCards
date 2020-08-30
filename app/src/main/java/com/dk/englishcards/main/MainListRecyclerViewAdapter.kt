@@ -8,12 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
+import com.dk.englishcards.cards.EnglishCardDbHandler
 import kotlinx.android.synthetic.main.main_list_item.view.*
 
 class MainListRecyclerViewAdapter(
-    private val targetList: Array<EnglishCard>) :
+    private val targetList: MutableList<EnglishCard>) :
     RecyclerView.Adapter<MainListRecyclerViewAdapter.MainListViewHolder>() {
-
+    private val dbHandler = EnglishCardDbHandler()
     private lateinit var listener: OnItemClickListener
 
     class MainListViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -52,5 +53,17 @@ class MainListRecyclerViewAdapter(
 
     fun setOnItemClickListener(listener: OnItemClickListener){
         this.listener = listener
+    }
+
+    fun removeItem(removingIndex: Int) {
+        if (targetList.size <= 0) {
+            return
+        }
+
+        val targetEnglishCard = targetList[removingIndex]
+        dbHandler.delete(targetEnglishCard.englishCardId)
+
+        this.targetList.removeAt(removingIndex)
+        this.notifyItemRemoved(removingIndex)
     }
 }
