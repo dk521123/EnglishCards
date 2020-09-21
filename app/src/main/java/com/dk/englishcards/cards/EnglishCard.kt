@@ -1,9 +1,7 @@
 package com.dk.englishcards.cards
 
-import android.util.Log
 import com.dk.englishcards.exam.Exam
 import io.realm.RealmObject
-import io.realm.RealmResults
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
 import java.util.*

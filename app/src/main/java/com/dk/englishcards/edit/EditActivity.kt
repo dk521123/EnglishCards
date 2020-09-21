@@ -67,5 +67,12 @@ class EditActivity : BaseSubPageActivity() {
             }
             super.moveToMain()
         }
+
+        showImagesButton.setOnClickListener {
+            moveTo(
+                ShowImagesActivity::class.java,
+                EnglishCard.ENGLISH_FIELD,
+                englishEditText.text.toString())
+        }
     }
 }
