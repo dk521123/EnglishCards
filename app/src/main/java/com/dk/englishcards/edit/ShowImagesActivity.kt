@@ -29,6 +29,7 @@ class ShowImagesActivity : BaseSubPageActivity(),
     private lateinit var englishCard: EnglishCard
     private val mainHandler = Handler(Looper.getMainLooper())
     private var targetImageView: ImageView? = null
+    private var targetRadioButton: RadioButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,12 +71,21 @@ class ShowImagesActivity : BaseSubPageActivity(),
         }
     }
 
-    override fun onSelectImageListener(selectedImageView: ImageView?) {
+    override fun onSelectImageListener(
+        selectedImageView: ImageView?, selectedRadioButton: RadioButton?) {
+
+        val previousRadioButton = this.targetRadioButton
         this.targetImageView = selectedImageView
-        this.saveImageFloatingActionButton.visibility = if (selectedImageView == null) {
-            FloatingActionButton.INVISIBLE
+        this.targetRadioButton = selectedRadioButton
+
+        if (selectedImageView == null) {
+            this.saveImageFloatingActionButton.visibility = FloatingActionButton.INVISIBLE
         } else {
-            FloatingActionButton.VISIBLE
+            this.saveImageFloatingActionButton.visibility = FloatingActionButton.VISIBLE
+        }
+        // To set the previous radio button off
+        if (previousRadioButton != null && previousRadioButton != selectedRadioButton) {
+            previousRadioButton.isChecked = false
         }
     }
 

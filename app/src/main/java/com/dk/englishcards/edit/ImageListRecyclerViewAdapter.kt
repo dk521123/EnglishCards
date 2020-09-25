@@ -19,7 +19,7 @@ class ImageListRecyclerViewAdapter(private val imageUrlList: List<String>) :
 
     inner class ImageListViewHolder(val view: View) : RecyclerView.ViewHolder(view)  {
         val image: ImageView = view.imageListImageView
-        val radioButton: RadioButton = view.imageListIRadioButton
+        private val radioButton: RadioButton = view.imageListIRadioButton
         init {
             radioButton.setOnClickListener {
                 Log.d("OnClick", "selectedItem = $selectedItem")
@@ -27,18 +27,18 @@ class ImageListRecyclerViewAdapter(private val imageUrlList: List<String>) :
                 if (selectedItem == adapterPosition) {
                     selectedItem = DEFAULT_SELECTED_POSITION
                     view.imageListIRadioButton.isChecked = false
-                    listener.onSelectImageListener(null)
+                    listener.onSelectImageListener(null, null)
                 } else {
                     selectedItem = adapterPosition
                     view.imageListIRadioButton.isChecked = true
-                    listener.onSelectImageListener(view.imageListImageView)
+                    listener.onSelectImageListener(view.imageListImageView, view.imageListIRadioButton)
                 }
             }
         }
     }
 
     interface OnSelectImageListener{
-        fun onSelectImageListener(selectedImageView: ImageView?)
+        fun onSelectImageListener(selectedImageView: ImageView?, selectedRadioButton: RadioButton?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageListViewHolder {
@@ -48,10 +48,8 @@ class ImageListRecyclerViewAdapter(private val imageUrlList: List<String>) :
     }
 
     override fun onBindViewHolder(holder: ImageListViewHolder, position: Int) {
-        val url = this.imageUrlList[position]
-
         Picasso.get()
-            .load(url)
+            .load(this.imageUrlList[position])
             .resize(300, 300)
             .centerCrop()
             .into(holder.view.imageListImageView)
