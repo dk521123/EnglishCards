@@ -1,34 +1,82 @@
 package com.dk.englishcards.edit
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
 import com.dk.englishcards.commons.BaseSubPageActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_show_images.*
 import kotlinx.coroutines.*
 import org.jsoup.Jsoup
+import java.io.File
+import java.io.FileOutputStream
 import java.util.regex.Pattern
 
-class ShowImagesActivity : BaseSubPageActivity() {
-    private lateinit var englishWord: String
+class ShowImagesActivity : BaseSubPageActivity(),
+    ImageListRecyclerViewAdapter.OnSelectImageListener {
+    private lateinit var englishCard: EnglishCard
     private val mainHandler = Handler(Looper.getMainLooper())
+    private var targetImageView: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_images)
 
-        this.englishWord = intent.getStringExtra(EnglishCard.ENGLISH_FIELD)
-
-        targetEnglishWordTextView.text = this.englishWord
+        val englishCardId = intent.getStringExtra(EnglishCard.ID_FIELD)
+        val englishCard = super.dbHandler.readById(englishCardId) ?: return
+        this.englishCard = englishCard
+        saveImageFloatingActionButton.visibility = FloatingActionButton.INVISIBLE
+        targetEnglishWordTextView.text = this.englishCard.english
         this.showImageList(false)
-        doParallelTaskAsync(this, this.englishWord)
+        doParallelTaskAsync(this, this.englishCard.english)
+
+        saveImageFloatingActionButton.setOnClickListener {
+            val imageView = this.targetImageView
+            if (imageView == null) {
+                Toast.makeText(
+                    this, "Saving image is failed...", Toast.LENGTH_SHORT).show()
+            } else {
+                val bitmapDrawable = imageView.drawable as BitmapDrawable
+                val image = bitmapDrawable.bitmap
+                image?.let { image ->
+                    applicationContext.let {
+                        val imageFileName =  "${this.englishCard.english}.png"
+                        val imageDirectory = it.getDir("Images", Context.MODE_PRIVATE)
+                        Log.d("ShowImage", "Image Directory = $imageDirectory")
+                        val imageFile = File(imageDirectory, imageFileName)
+                        image.compress(
+                            Bitmap.CompressFormat.PNG, 90, FileOutputStream(imageFile))
+                        // To save image path into DB.
+                        super.dbHandler.updateImagePath(
+                            this.englishCard.englishCardId, imageFile.absolutePath)
+                    }
+                }
+                Toast.makeText(
+                    this, "Saving image is successful", Toast.LENGTH_SHORT).show()
+                super.moveToMain()
+            }
+        }
+    }
+
+    override fun onSelectImageListener(selectedImageView: ImageView?) {
+        this.targetImageView = selectedImageView
+        this.saveImageFloatingActionButton.visibility = if (selectedImageView == null) {
+            FloatingActionButton.INVISIBLE
+        } else {
+            FloatingActionButton.VISIBLE
+        }
     }
 
     private fun showImageList(isShown: Boolean) {
@@ -58,6 +106,7 @@ class ShowImagesActivity : BaseSubPageActivity() {
                     imagesRecyclerView.layoutManager = LinearLayoutManager(context)
                     imagesRecyclerView.adapter = imagesGridAdapter
                     imagesRecyclerView.setHasFixedSize(true)
+                    imagesGridAdapter.setOnSelectImageListener(this@ShowImagesActivity)
                 })
             } catch (ex: java.lang.Exception) {
                 ex.printStackTrace()

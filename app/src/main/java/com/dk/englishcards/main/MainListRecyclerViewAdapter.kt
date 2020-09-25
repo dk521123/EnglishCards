@@ -1,5 +1,6 @@
 package com.dk.englishcards.main
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
 import com.dk.englishcards.cards.EnglishCardDbHandler
 import kotlinx.android.synthetic.main.main_list_item.view.*
+import java.io.File
 
 class MainListRecyclerViewAdapter(
     private val targetList: MutableList<EnglishCard>) :
@@ -40,11 +42,20 @@ class MainListRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: MainListViewHolder, position: Int) {
-        holder.view.itemImageView.setImageResource(
-            R.mipmap.ic_launcher_round
-        )
-        holder.view.titleTextView.text = targetList[position].english
-        holder.view.subtitleTextView.text = targetList[position].motherLanguage
+        val englishCard = targetList[position]
+
+        if (englishCard.imagePath.isNullOrEmpty()) {
+            holder.view.itemImageView.setImageResource(
+                R.mipmap.ic_launcher_round
+            )
+        } else {
+            val imageFile = File(englishCard.imagePath)
+            val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
+            holder.view.itemImageView.setImageBitmap(bitmap)
+        }
+
+        holder.view.titleTextView.text = englishCard.english
+        holder.view.subtitleTextView.text = englishCard.motherLanguage
         // For Click event
         holder.view.setOnClickListener {
             listener.onItemClickListener(it, position, targetList[position])

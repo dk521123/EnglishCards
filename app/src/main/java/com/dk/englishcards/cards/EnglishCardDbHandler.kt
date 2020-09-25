@@ -62,6 +62,18 @@ class EnglishCardDbHandler(context: Context? = null) {
         ex.printStackTrace()
     }
 
+    fun updateImagePath(englishCardId: String, imagePath: String) {
+        try {
+            this.realm.executeTransaction {
+                val englishCard = this.readById(englishCardId)
+                englishCard?.imagePath = imagePath
+                englishCard?.updatedAt = Date()
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+    }
+
     fun update(
         englishCardId: String,
         english: String,

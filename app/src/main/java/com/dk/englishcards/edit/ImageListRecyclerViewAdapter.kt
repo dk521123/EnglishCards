@@ -2,15 +2,43 @@ package com.dk.englishcards.edit
 
 import android.view.*
 import android.widget.ImageView
+import android.widget.RadioButton
 import androidx.recyclerview.widget.RecyclerView
+import android.util.Log
 import com.dk.englishcards.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.image_list.view.*
 
+const val DEFAULT_SELECTED_POSITION = -1
+
 class ImageListRecyclerViewAdapter(private val imageUrlList: List<String>) :
     RecyclerView.Adapter<ImageListRecyclerViewAdapter.ImageListViewHolder>() {
-    class ImageListViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+    private lateinit var listener: OnSelectImageListener
+    private var selectedItem:Int = DEFAULT_SELECTED_POSITION
+
+    inner class ImageListViewHolder(val view: View) : RecyclerView.ViewHolder(view)  {
         val image: ImageView = view.imageListImageView
+        val radioButton: RadioButton = view.imageListIRadioButton
+        init {
+            radioButton.setOnClickListener {
+                Log.d("OnClick", "selectedItem = $selectedItem")
+                Log.d("OnClick", "adapterPosition = $adapterPosition")
+                if (selectedItem == adapterPosition) {
+                    selectedItem = DEFAULT_SELECTED_POSITION
+                    view.imageListIRadioButton.isChecked = false
+                    listener.onSelectImageListener(null)
+                } else {
+                    selectedItem = adapterPosition
+                    view.imageListIRadioButton.isChecked = true
+                    listener.onSelectImageListener(view.imageListImageView)
+                }
+            }
+        }
+    }
+
+    interface OnSelectImageListener{
+        fun onSelectImageListener(selectedImageView: ImageView?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageListViewHolder {
@@ -31,5 +59,9 @@ class ImageListRecyclerViewAdapter(private val imageUrlList: List<String>) :
 
     override fun getItemCount(): Int {
         return this.imageUrlList.size
+    }
+
+    fun setOnSelectImageListener(listener: OnSelectImageListener){
+        this.listener = listener
     }
 }

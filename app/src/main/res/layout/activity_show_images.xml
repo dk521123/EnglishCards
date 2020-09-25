@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,32 +20,37 @@
             android:layout_marginTop="8dp"
             android:text="Target"
             android:textSize="36sp" />
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:ignore="MissingConstraints">
+            android:layout_height="match_parent">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/imagesRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical" />
-        </LinearLayout>
-    </LinearLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/saveImageFloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_menu_save" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
-        <ProgressBar
-            android:id="@+id/imagesProgressbar"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="?android:attr/progressBarStyleLarge"
-            tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                tools:ignore="MissingConstraints">
+                <ProgressBar
+                    android:id="@+id/imagesProgressbar"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="?android:attr/progressBarStyleLarge"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
+        </FrameLayout>>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

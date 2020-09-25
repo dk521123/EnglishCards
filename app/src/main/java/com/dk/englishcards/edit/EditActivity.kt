@@ -71,8 +71,8 @@ class EditActivity : BaseSubPageActivity() {
         showImagesButton.setOnClickListener {
             moveTo(
                 ShowImagesActivity::class.java,
-                EnglishCard.ENGLISH_FIELD,
-                englishEditText.text.toString())
+                EnglishCard.ID_FIELD,
+                this.englishCardId)
         }
     }
 }

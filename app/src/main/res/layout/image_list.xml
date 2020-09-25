@@ -14,6 +14,13 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
+        <RadioButton
+            android:id="@+id/imageListIRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RadioButton" />
+
         <ImageView
             android:id="@+id/imageListImageView"
             android:layout_width="350dp"
