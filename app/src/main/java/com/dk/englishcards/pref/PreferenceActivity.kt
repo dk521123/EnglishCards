@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.activity_preference.*
 
 class PreferenceActivity : BaseSubPageActivity() {
     private val indexTabItems = listOf(
-        IndexItem.ExamItem,
-        IndexItem.OthersItem)
+        IndexItem.EnglishWordExamItem,
+        IndexItem.ImportItem)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +25,8 @@ class PreferenceActivity : BaseSubPageActivity() {
         }
         TabLayoutMediator(prefTabLayout, prefViewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Exam"
-                else -> "Others"
+                0 -> "Word Exam"
+                else -> "Import"
             }
         }.attach()
     }
@@ -34,13 +34,13 @@ class PreferenceActivity : BaseSubPageActivity() {
     private sealed class IndexItem {
         abstract fun newInstance(): Fragment
 
-        object ExamItem : IndexItem() {
+        object EnglishWordExamItem : IndexItem() {
             override fun newInstance() =
-                PrefExamFragment.newInstance()
+                PrefWordExamFragment.newInstance()
         }
-        object OthersItem : IndexItem() {
+        object ImportItem : IndexItem() {
             override fun newInstance() =
-                PrefOthersFragment.newInstance()
+                PrefImportFragment.newInstance()
         }
     }
 }

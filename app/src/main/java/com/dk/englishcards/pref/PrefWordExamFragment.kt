@@ -10,12 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.dk.englishcards.commons.BaseFragment
 import com.dk.englishcards.R
-import kotlinx.android.synthetic.main.fragment_pref_exam.*
+import kotlinx.android.synthetic.main.fragment_pref_word_exam.*
 
-class PrefExamFragment : BaseFragment() {
+class PrefWordExamFragment : BaseFragment() {
     companion object {
         @JvmStatic
-        fun newInstance() = PrefExamFragment()
+        fun newInstance() = PrefWordExamFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class PrefExamFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pref_exam, container, false)
+        return inflater.inflate(R.layout.fragment_pref_word_exam, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

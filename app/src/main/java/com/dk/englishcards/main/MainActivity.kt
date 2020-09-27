@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,8 +16,6 @@ import com.dk.englishcards.cards.EnglishCard
 import com.dk.englishcards.commons.BaseActivity
 import com.dk.englishcards.edit.EditActivity
 import com.dk.englishcards.exam.ExamActivity
-import com.dk.englishcards.importwords.ClearAllWordsCommand
-import com.dk.englishcards.importwords.ImportToeicWordsCommand
 import com.dk.englishcards.pref.PreferenceActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -43,8 +40,6 @@ class MainActivity : BaseActivity() {
 
     // Click events For menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val clearCommand = ClearAllWordsCommand()
-        val importToeicCommand = ImportToeicWordsCommand(this.assets)
         return when (item.itemId) {
             R.id.preferenceItem -> {
                 this.moveTo(PreferenceActivity::class.java)
@@ -56,17 +51,6 @@ class MainActivity : BaseActivity() {
             }
             R.id.addItem -> {
                 this.moveToEdit()
-                true
-            }
-            R.id.clearAndImportToeicItem -> {
-                val message = if (clearCommand.execute() &&
-                        importToeicCommand.execute()) {
-                    "Import is successful..."
-                } else {
-                    "Import is failed..."
-                }
-                this.showUpdatedView()
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 true
             }
             else -> {

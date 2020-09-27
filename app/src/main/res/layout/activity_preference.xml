@@ -15,16 +15,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/examPrefTabItem"
+            android:id="@+id/wordExamPrefTabItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/exam_pref_tab" />
+            android:text="@string/word_exam_menu" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/othersPrefTabItem"
+            android:id="@+id/importPrefTabItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/others_pref_tab" />
+            android:text="@string/import_pref_tab" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
