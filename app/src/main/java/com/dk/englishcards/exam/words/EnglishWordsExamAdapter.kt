@@ -1,10 +1,10 @@
-package com.dk.englishcards.exam
+package com.dk.englishcards.exam.words
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class ExamAdapter(fragmentActivity: FragmentActivity, exams: List<Exam>)
+class EnglishWordsExamAdapter(fragmentActivity: FragmentActivity, exams: List<EnglishWordsExam>)
     : FragmentStateAdapter(fragmentActivity) {
     private val exams = exams
 
@@ -14,7 +14,8 @@ class ExamAdapter(fragmentActivity: FragmentActivity, exams: List<Exam>)
         val questionOrAnswer = if ((position % 2) == 0)
             exam.question else exam.answer
         return ExamFragment.newInstance(
-            position, questionOrAnswer, exam.englishCardId)
+            position, questionOrAnswer, exam.englishCardId
+        )
     }
 
     override fun getItemCount(): Int {

@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme" >
         <activity android:name=".edit.ShowImagesActivity" >
         </activity>
-        <activity android:name=".exam.ExamActivity" />
+        <activity android:name=".exam.words.EnglishWordsExamActivity" />
         <activity android:name=".pref.PreferenceActivity" />
         <activity android:name=".edit.EditActivity" />
         <activity android:name=".main.MainActivity" >

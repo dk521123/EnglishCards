@@ -1,4 +1,4 @@
-package com.dk.englishcards.exam
+package com.dk.englishcards.exam.words
 
 import android.os.Bundle
 import android.view.LayoutInflater

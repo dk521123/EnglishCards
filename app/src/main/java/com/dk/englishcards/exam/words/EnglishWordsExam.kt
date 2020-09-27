@@ -1,6 +1,6 @@
-package com.dk.englishcards.exam
+package com.dk.englishcards.exam.words
 
-data class Exam (
+data class EnglishWordsExam (
     val englishCardId: String,
     val question: String,
     val answer: String

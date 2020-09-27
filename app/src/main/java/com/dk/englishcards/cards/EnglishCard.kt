@@ -1,6 +1,6 @@
 package com.dk.englishcards.cards
 
-import com.dk.englishcards.exam.Exam
+import com.dk.englishcards.exam.words.EnglishWordsExam
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
@@ -36,8 +36,8 @@ open class EnglishCard : RealmObject() {
         fun toExams(englishCards: List<EnglishCard>,
                     isEnglishQuestion: Boolean = true,
                     maxNumberQuestion: Int? = null
-        ): List<Exam> {
-            val returnValues = mutableListOf<Exam>()
+        ): List<EnglishWordsExam> {
+            val returnValues = mutableListOf<EnglishWordsExam>()
             for ((index, englishCard) in englishCards.withIndex()) {
                 if (maxNumberQuestion != null &&
                     maxNumberQuestion < index + 1) {
@@ -51,14 +51,14 @@ open class EnglishCard : RealmObject() {
         @JvmStatic
         fun toExam(
             englishCard: EnglishCard,
-            isEnglishQuestion: Boolean = true) : Exam {
+            isEnglishQuestion: Boolean = true) : EnglishWordsExam {
             return if (isEnglishQuestion) {
-                Exam(
+                EnglishWordsExam(
                     englishCard.englishCardId,
                     englishCard.english,
                     englishCard.motherLanguage)
             } else {
-                Exam(
+                EnglishWordsExam(
                     englishCard.englishCardId,
                     englishCard.motherLanguage,
                     englishCard.english)

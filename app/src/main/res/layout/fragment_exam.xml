@@ -5,7 +5,7 @@
     android:id="@+id/preferenceFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".exam.ExamFragment">
+    tools:context=".exam.words.ExamFragment">
 
     <TextView
         android:id="@+id/examTextView"

@@ -1,4 +1,4 @@
-package com.dk.englishcards.exam
+package com.dk.englishcards.exam.words
 
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
@@ -8,7 +8,7 @@ import com.dk.englishcards.cards.EnglishCard
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_exam.*
 
-class ExamActivity : BaseSubPageActivity() {
+class EnglishWordsExamActivity : BaseSubPageActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class ExamActivity : BaseSubPageActivity() {
             super.preference.isEnglishQuestion(),
             super.preference.getMaxNumberQuestion()
         )
-        examViewPager.adapter = ExamAdapter(this, exams)
+        examViewPager.adapter = EnglishWordsExamAdapter(this, exams)
         examViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         TabLayoutMediator(examIndicator, examViewPager) { _, _ -> }.attach()
     }
