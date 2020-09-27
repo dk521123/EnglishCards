@@ -8,7 +8,7 @@
     tools:context=".pref.PrefImportFragment">
 
     <TextView
-        android:id="@+id/toeicWordTextView"
+        android:id="@+id/englishWordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -19,23 +19,55 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/clearAndImportToeicTextView"
+        android:id="@+id/englishWordsForToeicTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="toeicImpoetTextView"
+        android:text="@string/english_word_for_toeic_label"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toeicWordTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/englishWordTextView" />
 
     <Button
-        android:id="@+id/clearAndImportToeicButton"
+        android:id="@+id/clearAndImportEnglishWordToeicButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/clear_and_import_button"
-        app:layout_constraintStart_toEndOf="@+id/clearAndImportToeicTextView"
-        app:layout_constraintTop_toBottomOf="@+id/toeicWordTextView" />
+        app:layout_constraintStart_toEndOf="@+id/englishWordsForToeicTextView"
+        app:layout_constraintTop_toBottomOf="@+id/englishWordTextView" />
+
+    <TextView
+        android:id="@+id/importGrammarExamTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/import_grammar_exam_label"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/englishWordsForToeicTextView" />
+
+    <TextView
+        android:id="@+id/grammarExamForToeicTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/grammar_exam_for_toeic_label"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/importGrammarExamTextView"
+        app:layout_constraintTop_toBottomOf="@+id/importGrammarExamTextView" />
+
+    <Button
+        android:id="@+id/clearAndImportToeicGrammarExamButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/clear_and_import_button"
+        app:layout_constraintStart_toEndOf="@+id/grammarExamForToeicTextView"
+        app:layout_constraintTop_toBottomOf="@+id/importGrammarExamTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

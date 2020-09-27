@@ -28,4 +28,7 @@
     <string name="show_image_button">Image</string>
     <string name="import_english_word_label">Import English Word</string>
     <string name="clear_and_import_button">Clear And Import</string>
+    <string name="import_grammar_exam_label">Import Grammar Exam</string>
+    <string name="english_word_for_toeic_label">English words for TOEIC</string>
+    <string name="grammar_exam_for_toeic_label">Grammar Exam For TOEIC</string>
 </resources>

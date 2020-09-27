@@ -1,6 +1,6 @@
-package com.dk.englishcards.importwords
+package com.dk.englishcards.pref.imports.grammers
 
-class ClearAllWordsCommand : BaseWordsCommand() {
+class ClearAllGrammarExamsCommand : BaseGrammarExamsCommand() {
     override fun execute(): Boolean {
         return try {
             super.dbHandler.deleteAll()

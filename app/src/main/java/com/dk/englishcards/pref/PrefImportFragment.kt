@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.dk.englishcards.commons.BaseFragment
 import com.dk.englishcards.R
-import com.dk.englishcards.importwords.ClearAllWordsCommand
-import com.dk.englishcards.importwords.ImportToeicWordsCommand
+import com.dk.englishcards.pref.imports.grammers.ClearAllGrammarExamsCommand
+import com.dk.englishcards.pref.imports.grammers.ImportToeicGrammarExamsCommand
+import com.dk.englishcards.pref.imports.words.ClearAllWordsCommand
+import com.dk.englishcards.pref.imports.words.ImportToeicWordsCommand
 import kotlinx.android.synthetic.main.fragment_pref_import.*
 
 class PrefImportFragment : BaseFragment() {
@@ -33,18 +35,31 @@ class PrefImportFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val clearCommand = ClearAllWordsCommand()
-        val importToeicCommand = ImportToeicWordsCommand(context!!.assets)
-
-        clearAndImportToeicButton.setOnClickListener {
-            val message = if (clearCommand.execute() &&
-                importToeicCommand.execute()) {
-                "Import is successful..."
-            } else {
-                "Import is failed..."
-            }
-            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+        val clearToeicWordsCommand = ClearAllWordsCommand()
+        val importToeicWordsCommand = ImportToeicWordsCommand(context!!.assets)
+        clearAndImportEnglishWordToeicButton.setOnClickListener {
+            val isSuccessful = clearToeicWordsCommand.execute() &&
+                importToeicWordsCommand.execute()
+            this.showDialog(isSuccessful)
             true
         }
+
+        val clearToeicGrammarExamsCommand = ClearAllGrammarExamsCommand()
+        val importToeicGrammarExamsCommand = ImportToeicGrammarExamsCommand(context!!.assets)
+        clearAndImportToeicGrammarExamButton.setOnClickListener {
+            val isSuccessful = clearToeicGrammarExamsCommand.execute() &&
+                importToeicGrammarExamsCommand.execute()
+            this.showDialog(isSuccessful)
+            true
+        }
+    }
+
+    private fun showDialog(isSuccessful: Boolean) {
+        val message = if (isSuccessful) {
+            "Import is successful..."
+        } else {
+            "Import is failed..."
+        }
+        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
 }
