@@ -4,7 +4,7 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmResults
 
-class GrammarExamDbHandler() {
+class GrammarExamDbHandler {
     private var realm: Realm
 
     init {

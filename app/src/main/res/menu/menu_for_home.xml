@@ -7,8 +7,11 @@
         android:icon="@drawable/ic_baseline_add_24"
         android:title="@string/add_menu" />
     <item
-        android:id="@+id/examItem"
+        android:id="@+id/englishWordsExamItem"
         android:title="@string/word_exam_menu" />
+    <item
+        android:id="@+id/grammarExamItem"
+        android:title="@string/grammar_exam_menu" />
     <item
         android:id="@+id/preferenceItem"
         android:icon="@drawable/icon"

@@ -15,6 +15,8 @@ import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
 import com.dk.englishcards.commons.BaseActivity
 import com.dk.englishcards.edit.EditActivity
+import com.dk.englishcards.exam.grammars.GrammarExam
+import com.dk.englishcards.exam.grammars.GrammarExamActivity
 import com.dk.englishcards.exam.words.EnglishWordsExamActivity
 import com.dk.englishcards.pref.PreferenceActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -45,8 +47,12 @@ class MainActivity : BaseActivity() {
                 this.moveTo(PreferenceActivity::class.java)
                 true
             }
-            R.id.examItem -> {
+            R.id.englishWordsExamItem -> {
                 this.moveTo(EnglishWordsExamActivity::class.java)
+                true
+            }
+            R.id.grammarExamItem -> {
+                this.moveTo(GrammarExamActivity::class.java)
                 true
             }
             R.id.addItem -> {

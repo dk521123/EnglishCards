@@ -1,5 +1,8 @@
 package com.dk.englishcards.exam.grammars
 
+import com.dk.englishcards.cards.EnglishCard
+import com.dk.englishcards.exam.words.EnglishWordsExam
+import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required

@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/examFragment"
+    android:id="@+id/englishWordsExamFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".exam.words.EnglishWordsExamActivity">
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/examViewPager"
+        android:id="@+id/englishWordsExamViewPager"
         android:layout_width="match_parent"
         android:layout_height="550dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,10 +26,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/examViewPager">
+        app:layout_constraintTop_toBottomOf="@+id/englishWordsExamViewPager">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/examIndicator"
+            android:id="@+id/englishWordsExamIndicator"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"

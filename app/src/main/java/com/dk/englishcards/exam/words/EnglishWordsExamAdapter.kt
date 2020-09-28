@@ -13,7 +13,7 @@ class EnglishWordsExamAdapter(fragmentActivity: FragmentActivity, exams: List<En
         val exam = exams[index]
         val questionOrAnswer = if ((position % 2) == 0)
             exam.question else exam.answer
-        return ExamFragment.newInstance(
+        return EnglishWordsExamFragment.newInstance(
             position, questionOrAnswer, exam.englishCardId
         )
     }
