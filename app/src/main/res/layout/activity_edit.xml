@@ -61,7 +61,7 @@
 
     <EditText
         android:id="@+id/memoEditText"
-        android:layout_width="@dimen/edit_text_width"
+        android:layout_width="@dimen/edit_memo_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -123,13 +123,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkRequiredTextView" />
 
-    <Button
-        android:id="@+id/showImagesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/show_image_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
+    <ImageView
+        android:id="@+id/englishWordImageView"
+        android:layout_width="130dp"
+        android:layout_height="138dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/motherLanguageEditText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

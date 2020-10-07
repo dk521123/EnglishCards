@@ -1,11 +1,13 @@
 package com.dk.englishcards.edit
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
 import com.dk.englishcards.commons.BaseSubPageActivity
 import kotlinx.android.synthetic.main.activity_edit.*
+import java.io.File
 
 class EditActivity : BaseSubPageActivity() {
     private var englishCardId: String? = null
@@ -22,6 +24,11 @@ class EditActivity : BaseSubPageActivity() {
             motherLanguageEditText.setText(englishCard?.motherLanguage)
             memoEditText.setText(englishCard?.memo)
             checkRequiredRatingBar.rating = englishCard?.checkRequired!!
+            if (!englishCard.imagePath.isNullOrEmpty()) {
+                val imageFile = File(englishCard.imagePath)
+                val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
+                englishWordImageView.setImageBitmap(bitmap)
+            }
 
             this.deleteButton.visibility = View.VISIBLE
         } else {
@@ -68,7 +75,7 @@ class EditActivity : BaseSubPageActivity() {
             super.moveToMain()
         }
 
-        showImagesButton.setOnClickListener {
+        englishWordImageView.setOnClickListener {
             moveTo(
                 ShowImagesActivity::class.java,
                 EnglishCard.ID_FIELD,

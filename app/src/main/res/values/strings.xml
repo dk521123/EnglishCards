@@ -39,5 +39,5 @@
     <string name="select_b_button">B</string>
     <string name="select_c_button">C</string>
     <string name="select_d_button">D</string>
-    <string name="next_question_button">Next</string>
+    <string name="next_question_button">Go to next question</string>
 </resources>
