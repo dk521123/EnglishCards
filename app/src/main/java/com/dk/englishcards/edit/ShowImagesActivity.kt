@@ -1,16 +1,15 @@
 package com.dk.englishcards.edit
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dk.englishcards.R
@@ -38,10 +37,25 @@ class ShowImagesActivity : BaseSubPageActivity(),
         val englishCardId = intent.getStringExtra(EnglishCard.ID_FIELD)
         val englishCard = super.dbHandler.readById(englishCardId) ?: return
         this.englishCard = englishCard
-        saveImageFloatingActionButton.visibility = FloatingActionButton.INVISIBLE
-        targetEnglishWordTextView.text = this.englishCard.english
-        this.showImageList(false)
-        doParallelTaskAsync(this, this.englishCard.english)
+        this.showImages(this.englishCard.english)
+
+        researchFloatingActionButton.setOnClickListener {
+            val keywordEdit = EditText(this)
+            val dialog = AlertDialog.Builder(this)
+            dialog.setTitle("Please input the keyword to research images")
+            dialog.setView(keywordEdit)
+            dialog.setPositiveButton("OK", DialogInterface.OnClickListener { _, _ ->
+                val keyword = keywordEdit.text.toString()
+                if (keyword.isEmpty()) {
+                    Toast.makeText(
+                        this, "Please input your keyword", Toast.LENGTH_SHORT).show()
+                    return@OnClickListener
+                }
+                this.showImages(keyword)
+            })
+            dialog.setNegativeButton("Cancel", null)
+            dialog.show()
+        }
 
         saveImageFloatingActionButton.setOnClickListener {
             val imageView = this.targetImageView
@@ -89,7 +103,18 @@ class ShowImagesActivity : BaseSubPageActivity(),
         }
     }
 
-    private fun showImageList(isShown: Boolean) {
+    private fun showImages(keyword: String) {
+        saveImageFloatingActionButton.visibility = FloatingActionButton.INVISIBLE
+        targetEnglishWordTextView.text =
+            if(this.englishCard.english == keyword)
+                keyword
+            else
+                "${this.englishCard.english} - $keyword"
+        this.switchVisibilitiesForComponents(false)
+        this.doParallelTaskAsync(this, keyword)
+    }
+
+    private fun switchVisibilitiesForComponents(isShown: Boolean) {
         if (isShown) {
             imagesProgressbar.visibility = ProgressBar.INVISIBLE
             imagesRecyclerView.visibility = RecyclerView.VISIBLE
@@ -112,7 +137,7 @@ class ShowImagesActivity : BaseSubPageActivity(),
             try {
                 val imagesGridAdapter = ImageListRecyclerViewAdapter(imageUrlList)
                 mainHandler.post(Runnable {
-                    showImageList(true)
+                    switchVisibilitiesForComponents(true)
                     imagesRecyclerView.layoutManager = LinearLayoutManager(context)
                     imagesRecyclerView.adapter = imagesGridAdapter
                     imagesRecyclerView.setHasFixedSize(true)
