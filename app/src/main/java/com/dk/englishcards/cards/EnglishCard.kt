@@ -8,9 +8,8 @@ import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
 import java.io.File
 import java.util.*
-import java.io.Serializable
 
-open class EnglishCard() : RealmObject(), Serializable {
+open class EnglishCard() : RealmObject() {
     @PrimaryKey
     var englishCardId: String = UUID.randomUUID().toString()
     @Required
@@ -24,8 +23,7 @@ open class EnglishCard() : RealmObject(), Serializable {
     var updatedAt: Date = Date()
 
     fun toImageBitmap() : Bitmap? {
-        val imageFile = File(this.imagePath)
-        return BitmapFactory.decodeFile(imageFile.absolutePath)
+        return toBitmap(this.imagePath)
     }
 
     companion object {
@@ -43,6 +41,12 @@ open class EnglishCard() : RealmObject(), Serializable {
             this.motherLanguage = motherLanguage
             this.memo = memo
             this.url = url
+        }
+
+        @JvmStatic
+        fun toBitmap(imagePath: String): Bitmap? {
+            val imageFile = File(imagePath)
+            return BitmapFactory.decodeFile(imageFile.absolutePath)
         }
 
         @JvmStatic
