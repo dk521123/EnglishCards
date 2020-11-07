@@ -1,12 +1,16 @@
 package com.dk.englishcards.cards
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.dk.englishcards.exam.words.EnglishWordsExam
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
+import java.io.File
 import java.util.*
+import java.io.Serializable
 
-open class EnglishCard : RealmObject() {
+open class EnglishCard() : RealmObject(), Serializable {
     @PrimaryKey
     var englishCardId: String = UUID.randomUUID().toString()
     @Required
@@ -14,9 +18,15 @@ open class EnglishCard : RealmObject() {
     var motherLanguage: String = ""
     var memo: String = ""
     var checkRequired: Float = 0.0F
+    var url: String = ""
     var imagePath: String = ""
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
+
+    fun toImageBitmap() : Bitmap? {
+        val imageFile = File(this.imagePath)
+        return BitmapFactory.decodeFile(imageFile.absolutePath)
+    }
 
     companion object {
         const val ID_FIELD = "englishCardId"
@@ -26,10 +36,13 @@ open class EnglishCard : RealmObject() {
         fun newInstance(
             english: String,
             motherLanguage: String,
-            memo: String) = EnglishCard().apply {
+            memo: String,
+            url: String
+        ) = EnglishCard().apply {
             this.english = english
             this.motherLanguage = motherLanguage
             this.memo = memo
+            this.url = url
         }
 
         @JvmStatic

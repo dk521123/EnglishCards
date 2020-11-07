@@ -46,6 +46,7 @@ class EnglishCardDbHandler(context: Context? = null) {
         english: String,
         motherLanguage: String,
         memo: String,
+        url: String,
         checkRequired: Float
     ) = try {
         this.realm.executeTransaction {
@@ -54,6 +55,7 @@ class EnglishCardDbHandler(context: Context? = null) {
             englishCard.english = english
             englishCard.motherLanguage = motherLanguage
             englishCard.memo = memo
+            englishCard.url = url
             englishCard.checkRequired = checkRequired
             englishCard.createdAt = Date()
             englishCard.updatedAt = Date()
@@ -79,6 +81,7 @@ class EnglishCardDbHandler(context: Context? = null) {
         english: String,
         motherLanguage: String,
         memo: String,
+        url: String,
         checkRequired: Float
     ) = try {
         this.realm.executeTransaction {
@@ -86,6 +89,7 @@ class EnglishCardDbHandler(context: Context? = null) {
             englishCard?.english = english
             englishCard?.motherLanguage = motherLanguage
             englishCard?.memo = memo
+            englishCard?.url = url
             englishCard?.checkRequired = checkRequired
             englishCard?.updatedAt = Date()
         }

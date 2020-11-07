@@ -25,8 +25,10 @@ class ImportToeicWordsCommand(assertManager: AssetManager) :
                 val motherLanguage = csvItems[1]
                 val memo = if (csvItems.size >= MIN_SIZE_FOR_TOEIC_WORD_ITEM + 1)
                     csvItems[2] else ""
+                val url = if (csvItems.size >= MIN_SIZE_FOR_TOEIC_WORD_ITEM + 2)
+                    csvItems[3] else ""
                 val englishCard = EnglishCard.newInstance(
-                    english, motherLanguage, memo)
+                    english, motherLanguage, memo, url)
                 targetEnglishCards.add(englishCard)
             }
 

@@ -1,13 +1,11 @@
 package com.dk.englishcards.edit
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
 import com.dk.englishcards.commons.BaseSubPageActivity
 import kotlinx.android.synthetic.main.activity_edit.*
-import java.io.File
 
 class EditActivity : BaseSubPageActivity() {
     private var englishCardId: String? = null
@@ -23,18 +21,18 @@ class EditActivity : BaseSubPageActivity() {
             englishEditText.setText(englishCard?.english)
             motherLanguageEditText.setText(englishCard?.motherLanguage)
             memoEditText.setText(englishCard?.memo)
+            urlEditText.setText(englishCard?.url)
             checkRequiredRatingBar.rating = englishCard?.checkRequired!!
             if (!englishCard.imagePath.isNullOrEmpty()) {
-                val imageFile = File(englishCard.imagePath)
-                val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
+                val bitmap = englishCard.toImageBitmap()
                 englishWordImageView.setImageBitmap(bitmap)
             }
-
             this.deleteButton.visibility = View.VISIBLE
         } else {
             englishEditText.setText("")
             motherLanguageEditText.setText("")
             memoEditText.setText("")
+            urlEditText.setText("")
             checkRequiredRatingBar.rating = 0.0F
 
             this.deleteButton.visibility = View.INVISIBLE
@@ -47,6 +45,7 @@ class EditActivity : BaseSubPageActivity() {
                         englishEditText.text.toString(),
                         motherLanguageEditText.text.toString(),
                         memoEditText.text.toString(),
+                        urlEditText.text.toString(),
                         checkRequiredRatingBar.rating
                     )
                 }
@@ -56,6 +55,7 @@ class EditActivity : BaseSubPageActivity() {
                         englishEditText.text.toString(),
                         motherLanguageEditText.text.toString(),
                         memoEditText.text.toString(),
+                        urlEditText.text.toString(),
                         checkRequiredRatingBar.rating
                     )
                 }

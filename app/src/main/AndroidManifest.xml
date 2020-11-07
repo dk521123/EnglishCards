@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".exam.grammars.GrammarExamActivity"></activity>
-        <activity android:name=".edit.ShowImagesActivity"></activity>
+        <activity android:name=".detail.DetailActivity"></activity>
+        <activity android:name=".exam.grammars.GrammarExamActivity" />
+        <activity android:name=".edit.ShowImagesActivity" />
         <activity android:name=".exam.words.EnglishWordsExamActivity" />
         <activity android:name=".pref.PreferenceActivity" />
         <activity android:name=".edit.EditActivity" />

@@ -72,14 +72,14 @@ class EnglishWordsExamFragment : BaseFragment() {
                 changeCheckRequiredRatingBar.rating = englishCard.checkRequired
                 changeCheckRequiredRatingBar.setOnRatingBarChangeListener { _, rating, _ ->
                     super.englishCardDbHandler.update(
-                        englishCard.englishCardId.toString(),
+                        englishCard.englishCardId,
                         englishCard?.english.toString(),
                         englishCard?.motherLanguage.toString(),
                         englishCard?.memo.toString(),
+                        englishCard?.url.toString(),
                         rating
                     )
                 }
-
             }
         }
     }

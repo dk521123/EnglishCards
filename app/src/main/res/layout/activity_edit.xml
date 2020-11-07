@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".edit.EditActivity">
 
+    <ImageView
+        android:id="@+id/englishWordImageView"
+        android:layout_width="130dp"
+        android:layout_height="138dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@+id/motherLanguageEditText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
+
     <TextView
         android:id="@+id/englishTextView"
         android:layout_width="wrap_content"
@@ -19,7 +29,7 @@
 
     <EditText
         android:id="@+id/englishEditText"
-        android:layout_width="@dimen/edit_text_width"
+        android:layout_width="@dimen/edit_text_short_width"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -40,7 +50,7 @@
 
     <EditText
         android:id="@+id/motherLanguageEditText"
-        android:layout_width="@dimen/edit_text_width"
+        android:layout_width="@dimen/edit_text_short_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -61,7 +71,7 @@
 
     <EditText
         android:id="@+id/memoEditText"
-        android:layout_width="@dimen/edit_memo_width"
+        android:layout_width="@dimen/edit_text_long_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -71,15 +81,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/memoTextView" />
 
-    <Button
-        android:id="@+id/cancelButton"
+    <TextView
+        android:id="@+id/urlTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:drawableLeft="@drawable/ic_menu_close_clear_cancel"
-        android:text="@string/cancel_button"
-        app:layout_constraintStart_toEndOf="@+id/saveButton"
+        android:text="@string/url_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/memoEditText" />
+
+    <EditText
+        android:id="@+id/urlEditText"
+        android:layout_width="@dimen/edit_text_long_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/urlTextView" />
+
+    <TextView
+        android:id="@+id/checkRequiredLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/check_required_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/urlEditText" />
+
+    <RatingBar
+        android:id="@+id/checkRequiredRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkRequiredLabelTextView" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@android:drawable/ic_menu_delete"
+        android:text="@string/delete_button"
+        app:layout_constraintStart_toEndOf="@+id/cancelButton"
         app:layout_constraintTop_toBottomOf="@+id/checkRequiredRatingBar" />
 
     <Button
@@ -94,42 +144,14 @@
         app:layout_constraintTop_toBottomOf="@+id/checkRequiredRatingBar" />
 
     <Button
-        android:id="@+id/deleteButton"
+        android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:drawableLeft="@android:drawable/ic_menu_delete"
-        android:text="@string/delete_button"
-        app:layout_constraintStart_toEndOf="@+id/cancelButton"
+        android:drawableLeft="@drawable/ic_menu_close_clear_cancel"
+        android:text="@string/cancel_button"
+        app:layout_constraintStart_toEndOf="@+id/saveButton"
         app:layout_constraintTop_toBottomOf="@+id/checkRequiredRatingBar" />
 
-    <TextView
-        android:id="@+id/checkRequiredTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/check_required_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/memoEditText" />
-
-    <RatingBar
-        android:id="@+id/checkRequiredRatingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkRequiredTextView" />
-
-    <ImageView
-        android:id="@+id/englishWordImageView"
-        android:layout_width="130dp"
-        android:layout_height="138dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toEndOf="@+id/motherLanguageEditText"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

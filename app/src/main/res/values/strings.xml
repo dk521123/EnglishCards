@@ -40,4 +40,6 @@
     <string name="select_c_button">C</string>
     <string name="select_d_button">D</string>
     <string name="next_question_button">Go to next question</string>
+    <string name="url_label">URL :</string>
+    <string name="detail_label">Detail</string>
 </resources>

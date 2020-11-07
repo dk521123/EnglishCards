@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
 import com.dk.englishcards.commons.BaseActivity
+import com.dk.englishcards.detail.DetailActivity
 import com.dk.englishcards.edit.EditActivity
 import com.dk.englishcards.exam.grammars.GrammarExam
 import com.dk.englishcards.exam.grammars.GrammarExamActivity
@@ -53,6 +54,10 @@ class MainActivity : BaseActivity() {
             }
             R.id.grammarExamItem -> {
                 this.moveTo(GrammarExamActivity::class.java)
+                true
+            }
+            R.id.detailItem -> {
+                this.moveTo(DetailActivity::class.java)
                 true
             }
             R.id.addItem -> {
