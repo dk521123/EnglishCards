@@ -19,6 +19,6 @@ class EnglishWordsExamAdapter(fragmentActivity: FragmentActivity, exams: List<En
     }
 
     override fun getItemCount(): Int {
-        return exams.size * 2
+        return this.exams.size * 2
     }
 }

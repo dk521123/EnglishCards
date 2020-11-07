@@ -64,6 +64,7 @@ class GrammarExamActivity :
         fragmentTransaction.replace(R.id.grammarsExamFrameLayout, fragment)
         fragmentTransaction.commit()
     }
+
     private fun getTargetGrammarExam(): GrammarExam {
         val index = this.questionNo - 1
         return this.grammarExams[index]

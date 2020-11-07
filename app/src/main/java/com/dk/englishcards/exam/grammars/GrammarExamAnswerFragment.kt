@@ -14,11 +14,7 @@ private const val ARG_ANSWER = "answer"
 private const val ARG_QUESTION = "question"
 private const val ARG_QUESTION_TRANSLATIONS = "questionTranslation"
 private const val ARG_COMMENTARY = "commentary"
-/**
- * A simple [Fragment] subclass.
- * Use the [GrammarExamAnswerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class GrammarExamAnswerFragment : Fragment() {
     private var no: Int = 1
     private var isCollectAnswer: Boolean = false
@@ -74,12 +70,12 @@ class GrammarExamAnswerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_grammar_exam_answer, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         correctOrNoTextView.text =
             "Q${this.no} " + if (this.isCollectAnswer) "Collect!!!" else "Incorrect..."
         questionTextView.text = this.question.toString().replace(
