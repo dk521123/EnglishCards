@@ -10,16 +10,16 @@
     <ImageView
         android:id="@+id/englishWordValueImageView"
         android:layout_width="130dp"
-        android:layout_height="138dp"
+        android:layout_height="@dimen/value_multi_height"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toEndOf="@+id/motherLanguageValueTextView"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/memoValueTextView"
+        app:layout_constraintTop_toBottomOf="@+id/memoLabelTextView"
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
     <TextView
         android:id="@+id/englishValueTextView"
-        android:layout_width="@dimen/edit_text_short_width"
+        android:layout_width="@dimen/edit_text_long_width"
         android:layout_height="@dimen/value_height"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/motherLanguageValueTextView"
-        android:layout_width="@dimen/edit_text_short_width"
+        android:layout_width="@dimen/edit_text_long_width"
         android:layout_height="@dimen/value_height"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -53,7 +53,7 @@
 
     <TextView
         android:id="@+id/memoValueTextView"
-        android:layout_width="@dimen/edit_text_long_width"
+        android:layout_width="@dimen/edit_text_short_width"
         android:layout_height="@dimen/value_multi_height"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -85,5 +85,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_dialog_info" />
+
+    <Button
+        android:id="@+id/goToEditButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/go_to_edit_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkRequiredValueRatingBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

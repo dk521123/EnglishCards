@@ -42,4 +42,5 @@
     <string name="next_question_button">Go to next question</string>
     <string name="url_label">URL :</string>
     <string name="detail_label">Detail</string>
+    <string name="go_to_edit_button">To Edit Page</string>
 </resources>

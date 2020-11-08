@@ -1,11 +1,11 @@
 package com.dk.englishcards.exam.grammars
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dk.englishcards.R
+import com.dk.englishcards.commons.BaseFragment
 import kotlinx.android.synthetic.main.fragment_grammar_exam_answer.*
 
 private const val ARG_NO = "no"
@@ -15,7 +15,7 @@ private const val ARG_QUESTION = "question"
 private const val ARG_QUESTION_TRANSLATIONS = "questionTranslation"
 private const val ARG_COMMENTARY = "commentary"
 
-class GrammarExamAnswerFragment : Fragment() {
+class GrammarExamAnswerFragment : BaseFragment() {
     private var no: Int = 1
     private var isCollectAnswer: Boolean = false
     private var answer: String? = ""

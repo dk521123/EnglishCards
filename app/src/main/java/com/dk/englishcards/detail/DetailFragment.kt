@@ -1,18 +1,17 @@
 package com.dk.englishcards.detail
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dk.englishcards.R
 import com.dk.englishcards.cards.EnglishCard
+import com.dk.englishcards.commons.BaseFragment
 import com.dk.englishcards.commons.Url
+import com.dk.englishcards.edit.EditActivity
 import kotlinx.android.synthetic.main.fragment_detail.*
 
+private const val ARG_PARAM_ENGLISH_CARD_ID = "englishCardId"
 private const val ARG_PARAM_ENGLISH = "english"
 private const val ARG_PARAM_MOTHER_LANGUAGE = "motherLanguage"
 private const val ARG_PARAM_MEMO = "memo"
@@ -20,7 +19,8 @@ private const val ARG_PARAM_URL = "url"
 private const val ARG_PARAM_IMAGE_PATH = "imagePath"
 private const val ARG_PARAM_CHECK_REQUIRED = "checkRequired"
 
-class DetailFragment : Fragment() {
+class DetailFragment : BaseFragment() {
+    private lateinit var englishCardId: String
     private lateinit var english: String
     private lateinit var motherLanguage: String
     private lateinit var memo: String
@@ -32,6 +32,7 @@ class DetailFragment : Fragment() {
         fun newInstance(englishCard: EnglishCard) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
+                    putString(ARG_PARAM_ENGLISH_CARD_ID, englishCard.englishCardId)
                     putString(ARG_PARAM_ENGLISH, englishCard.english)
                     putString(ARG_PARAM_MOTHER_LANGUAGE, englishCard.motherLanguage)
                     putString(ARG_PARAM_MEMO, englishCard.memo)
@@ -45,6 +46,7 @@ class DetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            englishCardId = it.getString(ARG_PARAM_ENGLISH_CARD_ID).toString()
             english = it.getString(ARG_PARAM_ENGLISH).toString()
             motherLanguage = it.getString(ARG_PARAM_MOTHER_LANGUAGE).toString()
             memo = it.getString(ARG_PARAM_MEMO).toString()
@@ -67,7 +69,10 @@ class DetailFragment : Fragment() {
         englishValueTextView.text = this.english
         motherLanguageValueTextView.text = this.motherLanguage
         memoValueTextView.text = this.memo
+
         checkRequiredValueRatingBar.rating = this.checkRequired
+        checkRequiredValueRatingBar.setIsIndicator(true)
+
         if (!this.imagePath.isNullOrEmpty()) {
             val bitmap = EnglishCard.toBitmap(this.imagePath)
             englishWordValueImageView.setImageBitmap(bitmap)
@@ -77,40 +82,16 @@ class DetailFragment : Fragment() {
             browseFloatingActionButton.hide()
         } else {
             browseFloatingActionButton.show()
+            // Event
             browseFloatingActionButton.setOnClickListener {
-                this.launchByUrl(this.url)
+                super.launchByUrl(this.url)
             }
         }
-    }
 
-    private fun launchByUrl(targetUrl: String) {
-        val url = Url(targetUrl)
-        if (!url.isUrl()) {
-            return
-        } else if (url.isYouTube()) {
-            this.launchYoutube(url)
-        } else {
-            this.launchBrowser(targetUrl)
-        }
-    }
-
-    private fun launchBrowser(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        this.startActivity(intent)
-    }
-
-    private fun launchYoutube(targetUrl: Url) {
-        try {
-            val intent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("vnd.youtube:" + targetUrl.getVideoId()))
-            this.startActivity(intent)
-        } catch (ex: Exception) {
-            // error
-            Log.w(ex.message, ex)
-
-            // Retry
-            this.launchBrowser(targetUrl.url)
+        goToEditButton.setOnClickListener {
+            super.moveTo(EditActivity::class.java,
+                EnglishCard.ID_FIELD,
+                this.englishCardId)
         }
     }
 }
